@@ -1,0 +1,30 @@
+[project]
+name = ""
+version = ""
+description = ""
+authors = [
+    {name = "Diego Alvarez S.", email = "dialvarezs@gmail.com"},
+]
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = [
+    "litestar[sqlalchemy,standard]>=2.3.2",
+    "psycopg>=3.1.12",
+    "alembic>=1.12.1",
+]
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "ruff>=0.1.5",
+]
+
+[tool.pdm.scripts]
+_.env_file = ".env"
+shell = { shell = "$SHELL" }
+start = "litestar run --reload"
+ruff_format = "ruff format app/ migrations/"
+ruff_sortimports = "ruff --select I --fix app/"
+format = { composite = ["ruff_format", "ruff_sortimports"] }
+
+[tool.ruff]
+line-length = 100
